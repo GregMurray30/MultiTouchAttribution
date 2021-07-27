@@ -31,7 +31,9 @@ The data generating process (DGP) that leads to a conversion in this simple simu
 Since the DGP is additive relative to channel, the attribution of each channel can be quantified easily. The contribution for each channel is simply the sum of all the terms dependent on that channel (2 terms each), divided by the sum of the terms for all channels - which excludes the contribution from the noise terms. This gives us a distribution of channel contributions that can interpreted as the percent of revenue attributed to each channel (or in econometric terms, the ~variance of "y" explained by the channel's terms). Observations with conversion probabilities in the >90th percentile were assigned a conversion value of 1, all others were assigned 0.
 
 ## Data Generating Logistic Function
-
+<p align="center">
+  <img src="https://github.com/SaritaIngu/US-FlightDelayAnalysis/blob/master/Flight%20Delay%20Images/BubbleMapUS.png" title="Delays by Airport">
+</p>
 ### * It's important to note that the DL model makes no assumptions about the data generating function. This simulation DGP is used simply to generate data with some learnable signal that is partially dependent on the inputs, and from which the "true attributions" can be derived. 
 
 ### The generating functions for each of the parameters and inputs were as follows:
