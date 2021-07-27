@@ -21,6 +21,7 @@ This notebook contains a *quick-and-dirty*, prototype implementation of the deep
 #### * **DLAW test MAE range from .12-.26**
 
 
+
 ## Simulation Methodology
 ### * Since the Li-Arava paper does not use a simulation or provide their data, and there was very minimal literature found on simulating MTA processes, a simulation had to be devised from scratch based on my own premises and assumptions.
 
@@ -32,8 +33,9 @@ Since the DGP is additive relative to channel, the attribution of each channel c
 
 ## Data Generating Logistic Function
 <p align="center">
-  <img src="https://github.com/SaritaIngu/US-FlightDelayAnalysis/blob/master/Flight%20Delay%20Images/BubbleMapUS.png" title="Delays by Airport">
+  <img src="https://github.com/GregMurray30/MultiTouchAttribution/blob/main/logit_dgp.png">
 </p>
+
 ### * It's important to note that the DL model makes no assumptions about the data generating function. This simulation DGP is used simply to generate data with some learnable signal that is partially dependent on the inputs, and from which the "true attributions" can be derived. 
 
 ### The generating functions for each of the parameters and inputs were as follows:
