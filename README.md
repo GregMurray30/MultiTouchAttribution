@@ -18,7 +18,7 @@ This notebook contains a *quick-and-dirty*, prototype implementation of the deep
  
 ####  Last-Touched test MAE range from .60-.70
 ####  First-Touched test MAE range from .80-1
-#### * **DLAW test MAE range from .05-.08**
+#### * **DLAW test MAE range from .10-.28**
 
 
 
