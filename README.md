@@ -5,10 +5,10 @@ implemented by Greg Murray
  https://arxiv.org/abs/1809.02230
 
 ## Foreword
-I arrived at the idea of using an LSTM-Attenion model for MTA independently and upon googling the topic came upon the Li-Arava paper that veered from my theorized approach only minorly. The following is a description and physical implementation of the model based on the description in the paper.
+The following is a description and physical implementation of the model based on the description in the paper.
 
 ## TLDR Results Summary
-This notebook contains a *quick-and-dirty*, prototype implementation of the deep learning model with attention weight vectors (**DLAW**), based on the 2018 Adobe paper in the link above, as a means of attributing channels' revenue from multi-touch impression data. The model performs much better on a simple, simulated dataset than the naive approaches 50-50 split, and first/last touched. 
+This notebook contains a prototype implementation of the deep learning model with attention weight vectors (**DLAW**), based on the 2018 Adobe paper in the link above, as a means of attributing channels' revenue from multi-touch impression data. The model performs much better on a simple, simulated dataset than the naive approaches 50-50 split, and first/last touched. 
  The data was simulated with an additive, mostly linear data generating function (see below for function and simulation methodology). The attribution percentage *mean absolute error* (MAE) for all approaches changed depending on the particular values chosen for the channel parameters in the simulated conversion logistic function (ie: the impact Facebook has as the second channel to impress, amount of boosting effect that a last-touched impression receives, etc.)   
  
  ### 95% Confidence Interval Absolute Error (AE), (*AE in range  [0, 1]*)
@@ -52,7 +52,7 @@ Since the DGP is additive relative to channel, the attribution of each channel c
  - beta2_SP = 0.5, 1.5
  - beta_lasttouch = .1, .2, .7, 1, 1.5, 2.2
  - beta_lgender = 0.4
- - epsilon ~ Normal(0, 1)
+ 
 
 In addition to its interpretability, the functional form of the model and particular parameter values were chosen to loosely simulate a plausible effect wherein Google is more impactful when it is the first impression because it implies higher latent interest (they googled some related terms independently) and the other two channels were either more or less impactful when seen last (depending on the value of beta_lasttouch) to simulate some higher or lower friction to the user purchase flow through their channel (ie: there is a better or worse funnel to purchase at FB than a Google ad).
 
