@@ -33,7 +33,7 @@ Since the DGP is additive relative to channel, the attribution of each channel c
 
 ## Data Generating Logistic Function
 <p align="center">
-  <img src="https://github.com/GregMurray30/MultiTouchAttribution/blob/main/logit_dgp.png">
+  <img src="https://github.com/GregMurray30/MultiTouchAttribution/blob/main/logit_dgf.png">
 </p>
 
 ### * It's important to note that the DL model makes no assumptions about the data generating function. This simulation DGP is used simply to generate data with some learnable signal that is partially dependent on the inputs, and from which the "true attributions" can be derived. 
@@ -43,16 +43,29 @@ Since the DGP is additive relative to channel, the attribution of each channel c
  - T1_FB, T1_GG, T1_SP, T2_FB, T2_GG, T2_SP ~ unif(1,3)
  - T1_elapse_time ~ gamma(2, 2)
  - gender ~ binomial(0.4)
- - v0 = -3
- - beta1_FB = 0.9
- - beta2_FB = 1.0, 1.8
- - beta1_GG = 1.7
- - beta2_GG = .8
- - beta1_SP = 0.4 , 1.4
- - beta2_SP = 0.5, 1.5
- - beta_lasttouch = .1, .2, .7, 1, 1.5, 2.2
- - beta_lgender = 0.4
- 
+ - v0 ~ -abs(N(3, .5))
+ - beta1_FB ~ N(1.1, .5)
+ - beta2_FB ~ N(1., .5)
+ - beta1_GG ~ N(1.3, .3)
+ - beta2_GG ~ N(.7, .4)
+ - beta1_SP ~ N(1., .6)
+ - beta2_SP ~ N(1., .6)
+ - beta_lasttouch ~ N(1., .1)
+ - beta_lgender ~ N(.5, .2)
+ - alpha = -abs(N(1, 1)) #decay effect for gap between time steps, constant for all channels
+ - c = 1 #constant to prevent exploding gap terms when they are <1
+
+ beta_g0 = abs(np.random.normal(1, .3, 1))[0] #google effect when it is first time step is stronger than otherwise
+beta_g1 = abs(np.random.normal(.8, .4, 1))[0] #google effect when it is second time step
+beta_f0 = abs(np.random.normal(1, .5, 1))[0] #facebook effect when it is first time step 
+beta_f1 = abs(np.random.normal(1, .5, 1))[0] #facebook effect when it is second time step
+beta_s0 = abs(np.random.normal(1, .6, 1))[0] #snapchat effect when it is first time step
+beta_s1 = abs(np.random.normal(1, .6, 1))[0] #snapchat effect when it is first time step
+beta_last_tch = abs(np.random.normal(1, .1, 1))[0] #effect boosted when channel is last touched, constant for all channels
+beta_gender = abs(np.random.normal(.5, .2, 1))[0] #effect for gender 
+alpha = -abs(np.random.normal(1, 1, 1))[0] #decay effect for gap between time steps, constant for all channels
+c = 1 #constant to prevent exploding gap terms when they are <1
+
 
 In addition to its interpretability, the functional form of the model and particular parameter values were chosen to loosely simulate a plausible effect wherein Google is more impactful when it is the first impression because it implies higher latent interest (they googled some related terms independently) and the other two channels were either more or less impactful when seen last (depending on the value of beta_lasttouch) to simulate some higher or lower friction to the user purchase flow through their channel (ie: there is a better or worse funnel to purchase at FB than a Google ad).
 
